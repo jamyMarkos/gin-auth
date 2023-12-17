@@ -2,12 +2,22 @@ package main
 
 import (
 	"os"
+	"github.com/joho/godotenv"
+	"net/http"
 	"github.com/gin-gonic/gin"
 	routes "github.com/jamyMarkos/gin-auth/routes"
 )
 
 func main()  {
+	// Load environment variables from .env file
+	err := godotenv.Load(".env")
+
+	if err != nil {
+		panic("Error loading .env file")
+	}
+	
 	port := os.Getenv("PORT")
+	
 	if port == "" {
 		port = "8080"
 	}
